@@ -132,6 +132,8 @@
     background-image: linear-gradient(var(--faint) 1px, transparent 1px), linear-gradient(90deg, var(--faint) 1px, transparent 1px); background-size: 24px 24px; }
   figure .fig svg { width: 56%; height: auto; color: var(--ink); stroke-width: 1.3; }
   figure .fig img { width: 100%; height: 100%; object-fit: cover; }
+  figure .fig.whole { background: #fff; }
+  figure .fig.whole img { object-fit: contain; }
   figcaption { margin-top: 8px; font-size: .82rem; color: var(--muted); }
   figcaption b { font: 500 .72rem var(--mono); letter-spacing: .06em; color: var(--ink); margin-right: 4px; }
   .proj .meta { margin-bottom: 6px; color: var(--muted); }
@@ -269,8 +271,7 @@
         </div>
       </div>
       <div>
-        <!-- Replace the <span> with <img src="images/headshot.jpg" alt="Zenith Saru"> -->
-        <div class="photo"><span>ZS</span></div>
+        <div class="photo"><img src="images/headshot.jpg" alt="Portrait of Zenith Saru"></div>
         <table class="facts">
           <tr><th>Based in</th><td>Kathmandu, Nepal</td></tr>
           <tr><th>Email</th><td><a href="mailto:zenithsaru@gmail.com">zenithsaru@gmail.com</a></td></tr>
@@ -342,9 +343,8 @@
 
     <article class="proj">
       <figure>
-        <!-- Swap in a map or chart from your thesis: <img src="images/thesis-map.jpg" alt="..."> -->
-        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-mountain"/></svg></div>
-        <figcaption><b>Fig. 1</b>Study area: forest and snow cover across Nepal.</figcaption>
+        <div class="fig whole"><img src="images/thesis-map.jpg" alt="Elevation map of Nepal from SRTM 30 m data, ranging from 59 m to 8,604 m" loading="lazy"></div>
+        <figcaption><b>Fig. 1</b>Study area: Nepal, shown with SRTM 30 m elevation.</figcaption>
       </figure>
       <div>
         <div class="caps meta">Undergraduate thesis · 2026 · Thapathali Campus</div>
@@ -361,8 +361,8 @@
 
     <article class="proj">
       <figure>
-        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-dam"/></svg></div>
-        <figcaption><b>Fig. 2</b>Hydropower in the Naumure, Trishuli and Arun basins.</figcaption>
+        <div class="fig whole"><img src="images/hydropower-basins.jpg" alt="Map of Nepal highlighting the West Rapti, Trishuli and Arun river basins" loading="lazy"></div>
+        <figcaption><b>Fig. 2</b>Study basins: West Rapti (Naumure), Trishuli and Arun.</figcaption>
       </figure>
       <div>
         <div class="caps meta">Research paper · 2026 · Nepal</div>
@@ -378,8 +378,8 @@
 
     <article class="proj">
       <figure>
-        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-factory"/></svg></div>
-        <figcaption><b>Fig. 3</b>Eco-industrial park model (add a photo of the model).</figcaption>
+        <div class="fig"><img src="images/eco-industrial-model.jpg" alt="Physical model of an eco-industrial park with factories, storage tanks, housing and green space" loading="lazy"></div>
+        <figcaption><b>Fig. 3</b>The eco-industrial park model on display.</figcaption>
       </figure>
       <div>
         <div class="caps meta">Civil model competition · Thapathali Campus</div>
@@ -395,8 +395,8 @@
 
     <article class="proj">
       <figure>
-        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-building"/></svg></div>
-        <figcaption><b>Fig. 4</b>Steel and RCC building projects (add a site photo).</figcaption>
+        <div class="fig whole"><img src="images/site-work.jpg" alt="Collage of site photos: steel framing, foundation reinforcement, a structural model and floor plans" loading="lazy"></div>
+        <figcaption><b>Fig. 4</b>On site: steel framing, reinforcement, structural models and drawings.</figcaption>
       </figure>
       <div>
         <div class="caps meta">Professional · 2025 — present · Kathmandu</div>
