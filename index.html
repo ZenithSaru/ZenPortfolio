@@ -1,0 +1,518 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your Name — Civil Engineer</title>
+<meta name="description" content="Your Name, civil engineer. Research interests, education, projects, publications and CV.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    color-scheme: light;
+    --desk: #d6d4cc;
+    --paper: #f2f1eb;
+    --ink: #1d1d1b;
+    --muted: #5c5b55;
+    --faint: rgba(29, 29, 27, .07);
+    --accent: #c4501c;
+    --heavy: 3px;
+    --mono: "IBM Plex Mono", ui-monospace, monospace;
+    --noise: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .05 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--desk) var(--noise);
+    color: var(--ink);
+    font: 400 16px/1.6 Figtree, system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 24px 80px;
+  }
+  a { color: inherit; text-underline-offset: 3px; text-decoration-thickness: 1px; }
+  a:hover { color: var(--accent); }
+  .caps { font-family: var(--mono); text-transform: uppercase; letter-spacing: .08em; font-size: .75rem; }
+  .muted { color: var(--muted); }
+
+  /* ================= TOP BAR ================= */
+  .topbar {
+    position: sticky; top: 0; z-index: 30; max-width: 1180px; margin: 0 auto 28px;
+    display: flex; align-items: center; justify-content: space-between; gap: 20px;
+    padding: 12px 0; background: var(--desk) var(--noise); border-bottom: 1px solid rgba(29,29,27,.25);
+  }
+  .topbar .who { font-weight: 700; letter-spacing: .03em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+  .topbar nav { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+  .topbar nav a { font: 500 .72rem var(--mono); letter-spacing: .1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; }
+  .topbar nav a:hover { text-decoration: underline; }
+  .btn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 16px; border: 2px solid var(--ink); text-decoration: none; font: 500 .75rem var(--mono); letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; transition: background .15s, color .15s; }
+  .btn:hover { background: var(--ink); color: var(--paper); }
+  .btn.solid { background: var(--ink); color: var(--paper); }
+  .btn.solid:hover { background: transparent; color: var(--ink); }
+  .topbar .btn { padding: 6px 12px; }
+
+  /* ================= SHEET ================= */
+  .sheet {
+    position: relative; max-width: 1180px; margin: 0 auto 36px;
+    padding: 22px; background: var(--paper) var(--noise);
+    border: 1px solid var(--ink);
+    box-shadow: 0 20px 36px -28px rgba(0,0,0,.4);
+    scroll-margin-top: 76px;
+  }
+  .frame { display: grid; grid-template-columns: minmax(0, 1fr) 190px; border: 2px solid var(--ink); }
+  .content { padding: 40px 44px 44px; min-width: 0; }
+
+  .gl { position: absolute; left: 22px; right: 22px; display: flex; justify-content: space-around; pointer-events: none; opacity: .45; }
+  .gl.t { top: 4px; } .gl.b { bottom: 4px; }
+  .gl span { font: 500 9px/1 var(--mono); }
+
+  .tblock { border-left: 2px solid var(--ink); display: flex; flex-direction: column; font-family: var(--mono); font-size: 11.5px; text-transform: uppercase; letter-spacing: .04em; }
+  .tc { padding: 10px 12px; border-bottom: 1px solid var(--ink); }
+  .tc small { display: block; font-size: 9px; color: var(--muted); letter-spacing: .1em; }
+  .tc.firm { padding: 14px 12px; border-bottom: 2px solid var(--ink); }
+  .tc.firm b { display: block; font-family: Figtree, sans-serif; font-size: 16px; font-weight: 700; letter-spacing: .02em; line-height: 1.2; }
+  .tc.num { margin-top: auto; border-bottom: 0; border-top: 2px solid var(--ink); }
+  .tc.num b { display: block; font-family: Figtree, sans-serif; font-size: 34px; font-weight: 600; line-height: 1; margin: 4px 0; }
+
+  /* Section heading */
+  .vtitle { display: flex; align-items: center; gap: 12px; margin-bottom: 26px; }
+  .vtitle .bub { width: 36px; height: 36px; flex: none; border: 1.5px solid var(--ink); border-radius: 50%; display: grid; place-items: center; font: 500 13px var(--mono); }
+  .vtitle h2 { font-size: 1.3rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; line-height: 1.2; border-bottom: var(--heavy) solid var(--ink); padding-bottom: 2px; }
+  .vtitle small { display: block; font: .68rem var(--mono); letter-spacing: .1em; text-transform: uppercase; border-top: 1px solid var(--ink); margin-top: 2px; padding-top: 2px; color: var(--muted); }
+  h3.sub { font: 600 .74rem var(--mono); letter-spacing: .12em; text-transform: uppercase; border-bottom: 2px solid var(--ink); padding-bottom: 4px; margin-bottom: 14px; }
+
+  /* ================= 01 COVER ================= */
+  .cover { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr); gap: 52px; align-items: start; }
+  .cover h1 { font-size: clamp(2.8rem, 6vw, 5.2rem); font-weight: 700; letter-spacing: -.02em; line-height: .95; text-transform: uppercase; margin-top: 14px; }
+  .cover .role { margin-top: 20px; padding-top: 10px; border-top: var(--heavy) solid var(--ink); }
+  .cover .role + .role { border-top: 1px solid var(--ink); margin-top: 6px; padding-top: 6px; }
+  .cover .statement { margin-top: 26px; font-size: 1.2rem; line-height: 1.55; max-width: 44ch; }
+  .cover .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .photo { aspect-ratio: 4 / 5; border: 1px solid var(--ink); display: grid; place-items: center; overflow: hidden;
+    background-image: linear-gradient(var(--faint) 1px, transparent 1px), linear-gradient(90deg, var(--faint) 1px, transparent 1px); background-size: 20px 20px; }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  .photo span { font: 600 3.4rem Figtree, sans-serif; letter-spacing: .02em; color: rgba(29,29,27,.25); }
+  .facts { width: 100%; border-collapse: collapse; margin-top: 14px; font-size: .92rem; }
+  .facts th, .facts td { text-align: left; padding: 7px 0; border-bottom: 1px solid rgba(29,29,27,.2); vertical-align: top; }
+  .facts th { font: 500 .66rem var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); width: 92px; padding-top: 10px; }
+
+  /* ================= 02 PROFILE ================= */
+  .profile { display: grid; grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); gap: 52px; }
+  .profile p.lead { font-size: 1.1rem; line-height: 1.65; }
+  .profile p.lead + p.lead { margin-top: 14px; }
+  ol.interests { list-style: none; counter-reset: n; }
+  ol.interests li { counter-increment: n; display: grid; grid-template-columns: 30px 1fr; padding: 11px 0; border-bottom: 1px solid rgba(29,29,27,.15); }
+  ol.interests li::before { content: counter(n, decimal-leading-zero); font: 500 .8rem/1.9 var(--mono); color: var(--muted); }
+  ol.interests b { display: block; font-weight: 600; }
+  ol.interests span { color: var(--muted); font-size: .93rem; }
+  .figures { display: grid; grid-template-columns: repeat(4, 1fr); border: 2px solid var(--ink); margin-top: 40px; }
+  .figures div { padding: 14px 16px; border-right: 1px solid var(--ink); }
+  .figures div:last-child { border-right: 0; }
+  .figures b { display: block; font-size: 1.9rem; font-weight: 600; letter-spacing: -.02em; line-height: 1.1; }
+  .figures small { font: .66rem var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+  .focus { margin-top: 26px; padding: 14px 18px; border-left: var(--heavy) solid var(--accent); background: rgba(196, 80, 28, .06); }
+  .focus .caps { color: var(--accent); display: block; margin-bottom: 2px; }
+
+  /* ================= 03 EDUCATION ================= */
+  .entry { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 28px; padding: 22px 0; border-top: 1px solid var(--ink); }
+  .entry:first-of-type { border-top: 2px solid var(--ink); }
+  .entry .when { font: 500 .82rem var(--mono); letter-spacing: .04em; }
+  .entry h4 { font-size: 1.2rem; font-weight: 600; line-height: 1.3; }
+  .entry .org { color: var(--muted); }
+  .entry dl { display: grid; grid-template-columns: 130px 1fr; gap: 6px 16px; margin-top: 14px; font-size: .95rem; }
+  .entry dt { font: 500 .66rem/2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; list-style: none; }
+  .tags li { padding: 0 8px; border: 1px solid var(--ink); font-size: .82rem; }
+
+  /* ================= 04 PROJECTS ================= */
+  .proj { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: 40px; padding: 30px 0; border-top: 1px solid var(--ink); }
+  .proj:first-of-type { border-top: 2px solid var(--ink); padding-top: 26px; }
+  .proj:last-child { padding-bottom: 0; }
+  figure .fig { aspect-ratio: 4 / 3; border: 1px solid var(--ink); display: grid; place-items: center; overflow: hidden;
+    background-image: linear-gradient(var(--faint) 1px, transparent 1px), linear-gradient(90deg, var(--faint) 1px, transparent 1px); background-size: 24px 24px; }
+  figure .fig svg { width: 56%; height: auto; color: var(--ink); stroke-width: 1.3; }
+  figure .fig img { width: 100%; height: 100%; object-fit: cover; }
+  figcaption { margin-top: 8px; font-size: .82rem; color: var(--muted); }
+  figcaption b { font: 500 .72rem var(--mono); letter-spacing: .06em; color: var(--ink); margin-right: 4px; }
+  .proj .meta { margin-bottom: 6px; color: var(--muted); }
+  .proj h4 { font-size: 1.45rem; font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
+  .proj p.sum { margin: 10px 0 16px; color: var(--muted); }
+  .proj dl { display: grid; grid-template-columns: 110px 1fr; border-top: 2px solid var(--ink); }
+  .proj dt, .proj dd { padding: 9px 0; border-bottom: 1px solid rgba(29,29,27,.2); }
+  .proj dt { font: 500 .66rem/2 var(--mono); letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+  .links { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 14px; font: 500 .74rem var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+
+  /* ================= 05 PUBLICATIONS ================= */
+  ol.pubs { list-style: none; counter-reset: p; border-top: 2px solid var(--ink); }
+  ol.pubs li { counter-increment: p; display: grid; grid-template-columns: 44px 1fr auto; gap: 12px; padding: 16px 0; border-bottom: 1px solid rgba(29,29,27,.2); }
+  ol.pubs li::before { content: "[" counter(p) "]"; font: 500 .82rem/1.9 var(--mono); }
+  ol.pubs .t { font-weight: 600; }
+  ol.pubs .v { font-style: italic; color: var(--muted); }
+  ol.pubs .status { font: 500 .66rem/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; border: 1px solid var(--ink); padding: 5px 7px; align-self: start; white-space: nowrap; }
+  .note { margin-top: 14px; font-size: .85rem; color: var(--muted); }
+
+  /* ================= 06 EXPERIENCE ================= */
+  .scroll { overflow-x: auto; }
+  table.sched { border-collapse: collapse; width: 100%; min-width: 620px; font-size: .94rem; border: 2px solid var(--ink); }
+  .sched th { font: 500 .66rem var(--mono); letter-spacing: .1em; text-transform: uppercase; text-align: left; padding: 9px 12px; border: 1px solid var(--ink); border-bottom: 2px solid var(--ink); }
+  .sched td { padding: 12px; border: 1px solid var(--ink); vertical-align: top; }
+  .sched td.d { font-family: var(--mono); font-size: .82rem; white-space: nowrap; }
+  .sched td.r { color: var(--muted); }
+
+  /* ================= 07 SKILLS ================= */
+  .skills { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 18px; margin-bottom: 40px; }
+  .skill { border: 1px solid var(--ink); padding: 16px 18px; }
+  .skill h4 { font: 600 .72rem var(--mono); letter-spacing: .12em; text-transform: uppercase; border-bottom: 2px solid var(--ink); padding-bottom: 4px; margin-bottom: 10px; }
+  .skill ul { list-style: none; font-size: .95rem; }
+  .skill li { padding: 3px 0; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+  ul.plain { list-style: none; border-top: 2px solid var(--ink); }
+  ul.plain li { display: flex; justify-content: space-between; gap: 16px; padding: 10px 0; border-bottom: 1px solid rgba(29,29,27,.2); }
+  ul.plain li span:last-child { font: .8rem var(--mono); color: var(--muted); white-space: nowrap; }
+
+  /* ================= 08 CONTACT ================= */
+  .contact { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 52px; align-items: start; }
+  .contact h2.big { font-size: clamp(2rem, 4vw, 3.1rem); font-weight: 700; letter-spacing: -.02em; line-height: 1.02; text-transform: uppercase; }
+  .contact p { margin-top: 16px; font-size: 1.1rem; max-width: 40ch; }
+  .contact .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+  footer.end { margin-top: 44px; padding-top: 12px; border-top: 1px solid var(--ink); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  /* ================= PHONE ================= */
+  @media (max-width: 860px) {
+    body { padding: 0 10px 60px; }
+    .topbar { margin-bottom: 14px; gap: 14px; }
+    .topbar .who { display: none; }
+    .topbar nav { gap: 16px; flex: 1; }
+    .sheet { padding: 14px; margin-bottom: 18px; scroll-margin-top: 64px; }
+    .gl { display: none; }
+    .frame { grid-template-columns: 1fr; }
+    .content { padding: 26px 18px 30px; }
+    .tblock { border-left: 0; border-top: 2px solid var(--ink); flex-direction: row; align-items: stretch; }
+    .tblock .tc { display: none; }
+    .tblock .tc.firm, .tblock .tc.num { display: block; border: 0; margin: 0; }
+    .tblock .tc.firm { flex: 1; border-right: 1px solid var(--ink); }
+    .tblock .tc.firm b { font-size: 14px; }
+    .tblock .tc.num b { font-size: 22px; }
+    .cover, .profile, .proj, .contact, .two-col { grid-template-columns: 1fr; gap: 30px; }
+    .cover .photo { max-width: 240px; }
+    .figures { grid-template-columns: 1fr 1fr; }
+    .figures div:nth-child(2) { border-right: 0; }
+    .figures div:nth-child(-n+2) { border-bottom: 1px solid var(--ink); }
+    .entry { grid-template-columns: 1fr; gap: 6px; }
+    .entry dl, .proj dl { grid-template-columns: 1fr; gap: 0; }
+    .entry dt { margin-top: 8px; }
+    .proj dt { border-bottom: 0; padding-bottom: 0; }
+    .proj dd { padding-top: 0; }
+    ol.pubs li { grid-template-columns: 34px 1fr; }
+    ol.pubs .status { grid-column: 2; justify-self: start; }
+  }
+  @media print {
+    body { background: none; padding: 0; font-size: 11pt; }
+    .topbar, .actions .btn:not(.solid) { display: none; }
+    .sheet { box-shadow: none; break-inside: avoid-page; margin: 0 0 12px; background: none; }
+    a { text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Line drawings used as figure placeholders until you add real photos/drawings -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-bridge" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4 46h92M4 40h92"/><path d="M12 78Q50 20 88 78"/><path d="M30 46v11M40 46v5M60 46v5M70 46v11"/><path d="M12 78v-32M88 78v-32"/><path d="M4 88h92"/></g></symbol>
+  <symbol id="i-building" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M24 90V26h36v64M60 48h20v42M12 90h80"/><path d="M32 36h6v7h-6zM46 36h6v7h-6zM32 52h6v7h-6zM46 52h6v7h-6zM32 68h6v7h-6zM46 68h6v7h-6zM67 58h6v6h-6zM67 72h6v6h-6z"/></g></symbol>
+  <symbol id="i-road" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M6 72h88M10 64l10-8h60l10 8"/><path d="M20 56l6-6h48l6 6"/><path d="M14 72v6M30 72v6M46 72v6M62 72v6M78 72v6"/><path d="M6 86h88"/></g></symbol>
+  <symbol id="i-beam" viewBox="0 0 100 100"><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M10 60h80M10 66h80"/><path d="M14 66l-6 10h12zM86 66l-6 10h12z"/><path d="M30 40v14l-3-4M30 54l3-4M50 40v14l-3-4M50 54l3-4M70 40v14l-3-4M70 54l3-4"/><path d="M30 40h40"/><path d="M10 84h80M10 81v6M90 81v6"/></g></symbol>
+</svg>
+
+<!-- =========================================================
+     EDIT HERE: details used in every title block
+     ========================================================= -->
+<script>
+  const SET = {
+    name: "Your Name",
+    role: "Civil Engineer",
+    updated: "Oct 2026"
+  };
+</script>
+
+<header class="topbar">
+  <a class="who" href="#profile-top">Your Name</a>
+  <nav aria-label="Sections">
+    <a href="#research">Research</a>
+    <a href="#education">Education</a>
+    <a href="#projects">Projects</a>
+    <a href="#publications">Publications</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <!-- Put your CV next to this file as cv.pdf -->
+  <a class="btn solid" href="cv.pdf">CV (PDF)</a>
+</header>
+
+<!-- ================= 01 INTRODUCTION ================= -->
+<section class="sheet" id="profile-top" data-title="Introduction">
+  <div class="frame"><div class="content">
+    <div class="cover">
+      <div>
+        <div class="caps muted">Portfolio · Civil Engineering</div>
+        <h1>Your<br>Name</h1>
+        <div class="caps role">Civil Engineer · B.Sc. Civil Engineering, University Name</div>
+        <div class="caps role">Structural engineering · Sustainable infrastructure</div>
+        <p class="statement">I am a civil engineer with six years of design and site experience, seeking a graduate research position in structural engineering. My interest is in how materials and structures perform over their service life, and how better data can make infrastructure safer and longer-lasting.</p>
+        <div class="actions">
+          <a class="btn solid" href="cv.pdf">Download CV</a>
+          <a class="btn" href="mailto:you@example.com">Email me</a>
+        </div>
+      </div>
+      <div>
+        <!-- Replace the <span> with <img src="images/headshot.jpg" alt="Your Name"> -->
+        <div class="photo"><span>YN</span></div>
+        <table class="facts">
+          <tr><th>Based in</th><td>City, Country</td></tr>
+          <tr><th>Email</th><td><a href="mailto:you@example.com">you@example.com</a></td></tr>
+          <tr><th>LinkedIn</th><td><a href="https://www.linkedin.com/in/your-profile">linkedin.com/in/your-profile</a></td></tr>
+          <tr><th>Scholar</th><td><a href="https://scholar.google.com/">Google Scholar</a> · <a href="https://orcid.org/">ORCID</a></td></tr>
+        </table>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 02 RESEARCH INTERESTS ================= -->
+<section class="sheet" id="research" data-title="Research interests">
+  <div class="frame"><div class="content">
+    <div class="vtitle"><span class="bub">02</span><div><h2>Research interests</h2><small>Profile &amp; motivation</small></div></div>
+    <div class="profile">
+      <div>
+        <p class="lead">Six years of designing and supervising bridges, buildings and drainage works have shown me how often decisions are made on conservative assumptions rather than measured behaviour. I want to help close that gap.</p>
+        <p class="lead">I am particularly interested in structural health monitoring and the durability of reinforced concrete, and in turning field data into practical guidance for engineers who assess and maintain existing structures.</p>
+        <div class="focus"><span class="caps">Current focus</span>Preparing graduate applications for Fall 2027, and completing the PE licensure process.</div>
+      </div>
+      <div>
+        <h3 class="sub">Areas of interest</h3>
+        <ol class="interests">
+          <li><div><b>Structural health monitoring</b><span>Sensor data for assessing existing bridges</span></div></li>
+          <li><div><b>Durability of reinforced concrete</b><span>Corrosion, cracking and service-life prediction</span></div></li>
+          <li><div><b>Sustainable structural design</b><span>Lower-carbon materials and material efficiency</span></div></li>
+          <li><div><b>Assessment &amp; rehabilitation</b><span>Load rating and strengthening of ageing structures</span></div></li>
+        </ol>
+      </div>
+    </div>
+    <div class="figures">
+      <div><b>3.7 / 4.0</b><small>Undergraduate GPA</small></div>
+      <div><b>6+</b><small>Years experience</small></div>
+      <div><b>30+</b><small>Projects delivered</small></div>
+      <div><b>2</b><small>Publications</small></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 03 EDUCATION ================= -->
+<section class="sheet" id="education" data-title="Education">
+  <div class="frame"><div class="content">
+    <div class="vtitle"><span class="bub">03</span><div><h2>Education</h2><small>Degrees &amp; academic work</small></div></div>
+
+    <div class="entry">
+      <div class="when">2015 — 2019</div>
+      <div>
+        <h4>B.Sc. Civil Engineering</h4>
+        <div class="org">University Name, City, Country</div>
+        <dl>
+          <dt>GPA</dt><dd>3.7 / 4.0 · First-class honours</dd>
+          <dt>Thesis</dt><dd>"Thesis title on the behaviour of reinforced concrete beams under cyclic loading"</dd>
+          <dt>Advisor</dt><dd>Prof. Advisor Name</dd>
+          <dt>Coursework</dt><dd><ul class="tags"><li>Structural Analysis</li><li>Reinforced Concrete Design</li><li>Steel Design</li><li>Geotechnics</li><li>Hydraulics</li><li>Finite Element Methods</li></ul></dd>
+        </dl>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 04 PROJECTS =================
+     Each project is one .proj block. To show a real photo or drawing, replace the <svg>
+     inside .fig with <img src="images/project.jpg" alt="Short description">.
+-->
+<section class="sheet" id="projects" data-title="Research &amp; projects">
+  <div class="frame"><div class="content">
+    <div class="vtitle"><span class="bub">04</span><div><h2>Research &amp; selected projects</h2><small>Academic and professional work</small></div></div>
+
+    <article class="proj">
+      <figure>
+        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-beam"/></svg></div>
+        <figcaption><b>Fig. 1</b>Test set-up for cyclic loading of RC beams (placeholder).</figcaption>
+      </figure>
+      <div>
+        <div class="caps meta">Undergraduate thesis · 2019 · University Name</div>
+        <h4>Behaviour of reinforced concrete beams under cyclic loading</h4>
+        <p class="sum">Experimental and numerical study of crack development and stiffness loss in RC beams subjected to repeated loading.</p>
+        <dl>
+          <dt>Role</dt><dd>Lead researcher, supervised by Prof. Advisor Name</dd>
+          <dt>Methods</dt><dd>Four-point bending tests, digital image correlation, nonlinear FE modelling</dd>
+          <dt>Outcome</dt><dd>FE model matched measured stiffness within 8%; presented at the department research day</dd>
+        </dl>
+        <div class="links"><a href="#">Thesis (PDF)</a><a href="#">Poster</a></div>
+      </div>
+    </article>
+
+    <article class="proj">
+      <figure>
+        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-bridge"/></svg></div>
+        <figcaption><b>Fig. 2</b>Elevation of the 45 m steel truss footbridge (placeholder).</figcaption>
+      </figure>
+      <div>
+        <div class="caps meta">Professional · 2024 · City</div>
+        <h4>Pedestrian bridge assessment &amp; rehabilitation</h4>
+        <p class="sum">Condition assessment, load rating and strengthening design for an ageing steel truss footbridge.</p>
+        <dl>
+          <dt>Role</dt><dd>Lead design engineer</dd>
+          <dt>Methods</dt><dd>Visual and NDT inspection, SAP2000 analysis, strengthening design to current code</dd>
+          <dt>Outcome</dt><dd>Service life extended by an estimated 30 years; bridge kept open during works</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="proj">
+      <figure>
+        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-building"/></svg></div>
+        <figcaption><b>Fig. 3</b>Front elevation of the six-storey building (placeholder).</figcaption>
+      </figure>
+      <div>
+        <div class="caps meta">Professional · 2023 · City</div>
+        <h4>Six-storey reinforced concrete building</h4>
+        <p class="sum">Structural design of an RC frame and mat foundation for a mixed-use development.</p>
+        <dl>
+          <dt>Role</dt><dd>Structural engineer</dd>
+          <dt>Methods</dt><dd>ETABS modelling, lateral and foundation design, construction drawings</dd>
+          <dt>Outcome</dt><dd>12% reduction in concrete volume compared with the initial scheme</dd>
+        </dl>
+      </div>
+    </article>
+
+    <article class="proj">
+      <figure>
+        <div class="fig"><svg viewBox="0 0 100 100"><use href="#i-road"/></svg></div>
+        <figcaption><b>Fig. 4</b>Typical cross-section of the upgraded road (placeholder).</figcaption>
+      </figure>
+      <div>
+        <div class="caps meta">Professional · 2022 · Region</div>
+        <h4>Rural road upgrade, 8 km</h4>
+        <p class="sum">Geometric, pavement and drainage design, followed by site supervision through construction.</p>
+        <dl>
+          <dt>Role</dt><dd>Design and site engineer</dd>
+          <dt>Methods</dt><dd>Civil 3D alignment design, pavement design, culvert hydraulics</dd>
+          <dt>Outcome</dt><dd>Completed three weeks ahead of schedule</dd>
+        </dl>
+      </div>
+    </article>
+  </div></div>
+</section>
+
+<!-- ================= 05 PUBLICATIONS ================= -->
+<section class="sheet" id="publications" data-title="Publications">
+  <div class="frame"><div class="content">
+    <div class="vtitle"><span class="bub">05</span><div><h2>Publications &amp; presentations</h2><small>Papers, conference talks, posters</small></div></div>
+    <ol class="pubs">
+      <li><div><b>Name, Y.</b>, Coauthor, A. &amp; Advisor, P. (2025). <span class="t">Title of the conference paper on monitoring of steel footbridges.</span> <span class="v">Proceedings of the Conference Name</span>, pp. 1–10. <a href="#">DOI</a></div><span class="status">Published</span></li>
+      <li><div><b>Name, Y.</b> &amp; Advisor, P. (2019). <span class="t">Cyclic behaviour of reinforced concrete beams: an experimental study.</span> <span class="v">Department Research Day, University Name</span> (poster). <a href="#">PDF</a></div><span class="status">Presented</span></li>
+      <li><div><b>Name, Y.</b>, Coauthor, A. (in preparation). <span class="t">Working title of a journal article.</span> <span class="v">Target journal</span>.</div><span class="status">In prep.</span></li>
+    </ol>
+    <p class="note">No publications yet? Replace this section with technical reports, a conference you attended, or remove it from the top menu.</p>
+  </div></div>
+</section>
+
+<!-- ================= 06 EXPERIENCE ================= -->
+<section class="sheet" id="experience" data-title="Experience">
+  <div class="frame"><div class="content">
+    <div class="vtitle"><span class="bub">06</span><div><h2>Professional experience</h2><small>Positions held</small></div></div>
+    <div class="scroll">
+      <table class="sched">
+        <thead><tr><th>Position</th><th>Organisation</th><th>Dates</th><th>Responsibilities</th></tr></thead>
+        <tbody>
+          <tr><td>Structural Engineer</td><td>Company Name, City</td><td class="d">2022 — Present</td><td class="r">Lead structural design on commercial and residential projects; mentor graduate engineers; coordinate with architects and contractors.</td></tr>
+          <tr><td>Site / Graduate Engineer</td><td>Company Name, City</td><td class="d">2019 — 2022</td><td class="r">Supervised construction quality; prepared quantity take-offs and progress reports; liaised with contractors on site.</td></tr>
+          <tr><td>Research Assistant</td><td>University Name, Dept. of Civil Engineering</td><td class="d">2018 — 2019</td><td class="r">Assisted with laboratory testing of concrete specimens and data processing for a faculty research project.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 07 SKILLS & AWARDS ================= -->
+<section class="sheet" id="skills" data-title="Skills &amp; awards">
+  <div class="frame"><div class="content">
+    <div class="vtitle"><span class="bub">07</span><div><h2>Skills, certifications &amp; awards</h2><small>Technical competence</small></div></div>
+    <div class="skills">
+      <div class="skill"><h4>Analysis &amp; design</h4><ul><li>SAP2000</li><li>ETABS</li><li>Abaqus (basic)</li><li>Eurocode / ACI design</li></ul></div>
+      <div class="skill"><h4>Drafting &amp; BIM</h4><ul><li>AutoCAD</li><li>Civil 3D</li><li>Revit</li></ul></div>
+      <div class="skill"><h4>Programming &amp; data</h4><ul><li>Python (NumPy, pandas)</li><li>MATLAB</li><li>Excel / VBA</li></ul></div>
+      <div class="skill"><h4>Lab &amp; field</h4><ul><li>Concrete &amp; materials testing</li><li>Site inspection &amp; QA/QC</li><li>Non-destructive testing</li></ul></div>
+    </div>
+    <div class="two-col">
+      <div>
+        <h3 class="sub">Certifications</h3>
+        <ul class="plain">
+          <li><span>Engineer in Training (EIT)</span><span>2020</span></li>
+          <li><span>Professional Engineer (PE)</span><span>In progress</span></li>
+          <li><span>English: IELTS 8.0 / TOEFL</span><span>2026</span></li>
+        </ul>
+      </div>
+      <div>
+        <h3 class="sub">Awards &amp; honours</h3>
+        <ul class="plain">
+          <li><span>Dean's List, University Name</span><span>2017–2019</span></li>
+          <li><span>Best Undergraduate Thesis, Dept. of Civil Eng.</span><span>2019</span></li>
+          <li><span>Scholarship or award name</span><span>Year</span></li>
+        </ul>
+      </div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= 08 CONTACT ================= -->
+<section class="sheet" id="contact" data-title="Contact">
+  <div class="frame"><div class="content">
+    <div class="contact">
+      <div>
+        <h2 class="big">Contact</h2>
+        <p>I welcome conversations about graduate research opportunities, collaborations and engineering roles.</p>
+        <div class="actions">
+          <a class="btn solid" href="mailto:you@example.com">you@example.com</a>
+          <a class="btn" href="cv.pdf">Download CV</a>
+        </div>
+      </div>
+      <table class="facts">
+        <tr><th>Email</th><td><a href="mailto:you@example.com">you@example.com</a></td></tr>
+        <tr><th>Phone</th><td>+00 000 000 0000</td></tr>
+        <tr><th>LinkedIn</th><td><a href="https://www.linkedin.com/in/your-profile">linkedin.com/in/your-profile</a></td></tr>
+        <tr><th>ORCID</th><td><a href="https://orcid.org/">0000-0000-0000-0000</a></td></tr>
+        <tr><th>Location</th><td>City, Country</td></tr>
+        <tr><th>References</th><td>Available on request</td></tr>
+      </table>
+    </div>
+    <footer class="end caps muted"><span>© <span id="year">2026</span> Your Name</span><span>Last updated <span id="upd"></span></span></footer>
+  </div></div>
+</section>
+
+<script>
+  const sheets = [...document.querySelectorAll('.sheet')];
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const letters = 'ABCDEF'.split('').map(l => `<span>${l}</span>`).join('');
+
+  sheets.forEach((s, i) => {
+    const no = String(i + 1).padStart(2, '0');
+    s.insertAdjacentHTML('afterbegin', `<div class="gl t" aria-hidden="true">${letters}</div><div class="gl b" aria-hidden="true">${letters}</div>`);
+    s.querySelector('.frame').insertAdjacentHTML('beforeend', `
+      <aside class="tblock" aria-hidden="true">
+        <div class="tc firm"><b>${esc(SET.name)}</b><span>${esc(SET.role)}</span></div>
+        <div class="tc"><small>Section</small><span>${s.dataset.title}</span></div>
+        <div class="tc"><small>Updated</small><span>${esc(SET.updated)}</span></div>
+        <div class="tc num"><small>Sheet</small><b>${no}</b><span>${i + 1} of ${sheets.length}</span></div>
+      </aside>`);
+  });
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+  document.getElementById('upd').textContent = SET.updated;
+</script>
+</body>
+</html>
